@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id("io.freefair.lombok") version "8.4"
+    id 'io.qameta.allure' version '2.8.1'
 }
 
 group 'ru.netology'
@@ -12,6 +13,19 @@ sourceCompatibility = 11
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 
+allure{
+    autoconfigure=true
+    version = '2.16.1'
+
+    useJUnit5 {
+        version = '2.16.1'
+    }
+}
+
+configurations {
+    testCompile
+}
+
 repositories {
     mavenCentral()
 }
@@ -20,7 +34,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.6.1'
     // библиотека com.codeborne:selenide используется при построении проекта с использованием Selenide
     testImplementation 'com.codeborne:selenide:6.17.1'
-
+    testImplementation'io.qameta.allure:allure-selenide:2.13.3'
     // при реализации проекте с использованием Selenium вместо библиотеки com.codeborne:selenide подключаются
     // org.seleniumhq.selenium:selenium-java и io.github.bonigarcia:webdrivermanager
     // testImplementation 'org.seleniumhq.selenium:selenium-java:4.11.0'
